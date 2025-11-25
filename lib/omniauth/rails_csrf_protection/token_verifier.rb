@@ -37,7 +37,7 @@ module OmniAuth
         # the same as what being set in `ActionController::Base`, we should make
         # all out configuration methods to delegate to `ActionController::Base`.
         config.each_key do |configuration_name|
-          undef_method configuration_name if defined?(configuration_name)
+          undef_method configuration_name if method_defined?(configuration_name)
           define_method configuration_name do
             ActionController::Base.config[configuration_name]
           end
